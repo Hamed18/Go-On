@@ -79,7 +79,6 @@ const About = () => {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* About Section */}
-
         <motion.section
           variants={fadeIn("up", 0.3)}
           initial="hidden"
@@ -222,7 +221,7 @@ const About = () => {
               </motion.div>
               <motion.h3
                 variants={textVariant(0.53)}
-                className="font-bold text-xl mb-3 text-center text-gray-700"
+                className="font-bold text-xl mb-3 text-center"
               >
                 Our Mission
               </motion.h3>
@@ -248,7 +247,7 @@ const About = () => {
               </motion.div>
               <motion.h3
                 variants={textVariant(0.57)}
-                className="font-bold text-xl mb-3 text-center text-gray-700"
+                className="font-bold text-xl mb-3 text-center"
               >
                 Our Values
               </motion.h3>
@@ -276,7 +275,7 @@ const About = () => {
               </motion.div>
               <motion.h3
                 variants={textVariant(0.61)}
-                className="font-bold text-xl mb-3 text-center text-gray-700"
+                className="font-bold text-xl mb-3 text-center"
               >
                 Contact Us
               </motion.h3>
@@ -297,40 +296,8 @@ const About = () => {
         </motion.section>
 
         {/* Quote Section */}
+       
         {/* <motion.section
-          variants={fadeIn("up", 0.7)}
-          className="relative bg-blue-600 text-white text-center px-6 py-12 rounded-2xl shadow-md mb-16 overflow-hidden"
-        >
-          <motion.div
-            variants={fadeIn("up", 0.71)}
-            className="absolute inset-0 opacity-10"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-              alt="Bike path pattern"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          <motion.div
-            variants={fadeIn("up", 0.72)}
-            className="relative z-10 max-w-3xl mx-auto"
-          >
-            <motion.blockquote
-              variants={fadeIn("up", 0.73)}
-              className="italic text-xl md:text-2xl mb-6"
-            >
-              "Life is like playing with mind. To keep your balance, you must
-              keep playing."
-            </motion.blockquote>
-            <motion.p
-              variants={fadeIn("up", 0.74)}
-              className="font-semibold text-lg"
-            >
-              – Mr. De Caprio
-            </motion.p>
-          </motion.div>
-        </motion.section> */}
-        <motion.section
           variants={fadeIn("up", 0.7)}
           initial="hidden"
           whileInView="show"
@@ -375,7 +342,7 @@ const About = () => {
               – Mr. De Caprio
             </motion.p>
           </motion.div>
-        </motion.section>
+        </motion.section> */}
 
         {/* Meet the Team */}
         <motion.section
@@ -424,7 +391,7 @@ const About = () => {
             </motion.p>
           </div>
           {/* Team Members Grid */}
-          <div className="flex justify-center gap-6 mt-8">
+          <div className="flex flex-col md:flex-row justify-center gap-4 mt-8">
             {[
               {
                 name: "Rafiul Islam Alvi",
@@ -435,7 +402,7 @@ const About = () => {
               {
                 name: "Alfaz Uddin",
                 role: "Co-Founder",
-                img: "https://randomuser.me/api/portraits/women/44.jpg",
+                img: "https://randomuser.me/api/portraits/men/44.jpg",
                 bio: "Alfaz Uddin is a hardworking entrepreneur and the co-founder of Go On Now. Known for his dedication and drive.",
               },
             ].map((member, index) => (

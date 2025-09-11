@@ -22,9 +22,9 @@ const Navbar = () => {
       <li>
         <NavLink to='/contact'>Contact</NavLink>
       </li>
-      {/* <li>
-        <NavLink to='/members'>Executive Members</NavLink>
-      </li> */}
+      <li>
+        <NavLink to='/blog'>News</NavLink>
+      </li>
     </>
   );
   return (

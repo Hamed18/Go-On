@@ -23,7 +23,7 @@ const About = () => {
         </motion.h3>
         <motion.h2
           variants={textVariant(0.5)}
-          className="font-bold text-2xl lg:text-3xl text-violet-500 md:text-3xl"
+          className="font-bold text-2xl lg:text-3xl md:text-3xl"
         >
           Upgrade Yourself : Compete to win
         </motion.h2>

@@ -63,7 +63,7 @@ const Headline = () => {
           variants={fadeIn("up", 0.17)}
           initial="hidden"
           animate="show"
-          className="text-sm md:text-xl font-semibold md:font-bold text-white"
+          className="text-sm md:text-xl font-semibold md:font-bold"
         >
           Go On - Chittagong eSports Showdown 2025 coming next!
         </motion.h3>
