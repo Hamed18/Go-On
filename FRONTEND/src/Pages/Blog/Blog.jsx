@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FaTwitter, FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import FeaturedPost from "./FeaturedPost";
 import LatestPost from "./LatestPost";
 import Subscribe from "./Subscribe";

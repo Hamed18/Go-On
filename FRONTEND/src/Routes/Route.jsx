@@ -4,8 +4,8 @@ import Home from "../Pages/Home/Home";
 import Event from "../Pages/Events/Event";
 import ErrorPage from "./ErrorPage";
 import About from "../Pages/Contact/About";
-import Blog from "../Pages/Blog/blog";
 import SingleBlogPage from "../Pages/Blog/SingleBlogPage";
+import Blog from "../Pages/Blog/Blog"; 
 
 const routes = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Blog></Blog>,
+        element: <Blog></Blog>
       },
       {
         path: "/contact",

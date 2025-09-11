@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
         <a className='flex items-center btn btn-ghost text-2xl font-bold'>
           <img src={logo} alt='ReeFood Logo' className='w-8 h-8 hidden' />
-          <span className='text-violet-500'>Go On</span>
+          <h3 className='font-bold'>Go On</h3>
         </a>
       </div>
       <div className='navbar-center hidden lg:flex'>
