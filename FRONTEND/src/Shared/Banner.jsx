@@ -29,27 +29,31 @@ const slides = [
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263233/HomePagePic3_wdl3we.jpg",
     alt: "Image 1",
-    link: "",
-    btnColor: "bg-violet-500",
+    link: "/events",
+    btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
+    text : "Play. Conquer. Repeat",
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263230/HomePagePic4_esb9an.jpg",
     alt: "Image 2",
     link: "/events",
-    btnColor: "bg-violet-600",
+    btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
+    text: "Fueling passion, forging success"
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263229/HomePagePic1_erz15a.jpg",
     alt: "Image 3",
     link: "/events",
-    btnColor: "bg-violet-600",
+    btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
+    text: "Enter the arena, claim your glory"
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263230/HomePagePic2_fttq6g.jpg",
     alt: "Image 4",
     link: "/events",
-    btnColor: "bg-violet-600",
-  },
+    btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
+    text:"Be a part of the legacy"  
+  }
 ];
 
 const Banner = () => {
@@ -97,18 +101,18 @@ const Banner = () => {
                   variants={fadeIn("up", 0.14 + i * 0.05)}
                   initial="hidden"
                   whileInView="show"
-                  className="text-2xl md:text-4xl font-bold md:font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600 tracking-wide drop-shadow-lg font-montserrat"
+                  className="text-xl md:text-2xl font-bold md:font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600 tracking-wide drop-shadow-lg font-montserrat mx-4 "
                 >
-                  Be a Part of the Legacy
+                  {slide.text}
                 </motion.h2>
                 <Link to={slide.link}>
                   <motion.button
                     variants={fadeIn("up", 0.16 + i * 0.05)}
                     initial="hidden"
                     whileInView="show"
-                    className={`${slide.btnColor} text-white font-semibold md:font-bold mt-4 px-4 py-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105`}
+                    className={`${slide.btnColor} text-white font-semibold md:font-bold  mt-4 px-2 md:px-4 py-1 md:py-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105`}
                   >
-                    Join
+                    Join the Battle
                   </motion.button>
                 </Link>
               </motion.div>

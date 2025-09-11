@@ -8,7 +8,7 @@ import MyCustomSvg from "../assets/arrow.svg";
 
 const Root = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-full mx-auto">
       <Headline></Headline>
       <Navbar></Navbar>
       <ScrollToTop

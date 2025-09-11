@@ -33,7 +33,7 @@ const Footer = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="footer text-white footer-center bg-violet-500 rounded p-8 mt-12 md:mt-16 mt-2"
+        className="footer text-white footer-center bg-gradient-to-r from-red-700/80 to-blue-700/80 rounded p-8 mt-12 md:mt-16 mt-2"
       >
         <motion.nav
           variants={fadeIn("up", 0.2)}

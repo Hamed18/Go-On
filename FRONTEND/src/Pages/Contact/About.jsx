@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaGamepad,
   FaLeaf,
@@ -9,7 +8,6 @@ import {
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../../utils/motion";
 
-// Dummy SectionTitle component for React.js (replace with your own if available)
 const SectionTitle = ({ subtitle, title }) => (
   <motion.div variants={fadeIn("up", 0.2)} className="mb-6">
     <motion.p
@@ -52,7 +50,7 @@ const About = () => {
           />
           <motion.div
             variants={fadeIn("up", 0.4)}
-            className="absolute inset-0 bg-gradient-to-r from-green-600/80 to-blue-600/80"
+            className="absolute inset-0 bg-gradient-to-r from-red-700/80 to-blue-700/80"
           />
         </div>
 
@@ -492,7 +490,7 @@ const About = () => {
           variants={fadeIn("up", 0.86)}
           initial="hidden"
           whileInView="show"
-          className="bg-green-600 text-white rounded-xl p-8 text-center"
+          className="bg-gradient-to-r from-red-700/80 to-blue-700/80 text-white rounded-xl p-8 text-center"
         >
           <div>
             <motion.h3

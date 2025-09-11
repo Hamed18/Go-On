@@ -7,7 +7,7 @@ const About = () => {
       variants={fadeIn('up', 0.2)}
       initial="hidden"
       whileInView="show"
-      className="flex flex-col md:flex-row gap-4 items-center md:items-start py-12 md:py-16"
+      className="sm:mx-4 md:mx-12 lg:16 flex flex-col md:flex-row gap-4 items-center md:items-start py-8 md:py-12"
       id="about"
     >
       {/* Left Side - Content */}
