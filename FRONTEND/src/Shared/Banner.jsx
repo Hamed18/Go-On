@@ -29,28 +29,28 @@ const slides = [
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263233/HomePagePic3_wdl3we.jpg",
     alt: "Image 1",
-    link: "/events",
+    link: "/enroll",
     btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
     text : "Play. Conquer. Repeat",
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263230/HomePagePic4_esb9an.jpg",
     alt: "Image 2",
-    link: "/events",
+    link: "/enroll",
     btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
     text: "Fueling passion, forging success"
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263229/HomePagePic1_erz15a.jpg",
     alt: "Image 3",
-    link: "/events",
+    link: "/enroll",
     btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
     text: "Enter the arena, claim your glory"
   },
   {
     img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757263230/HomePagePic2_fttq6g.jpg",
     alt: "Image 4",
-    link: "/events",
+    link: "/enroll",
     btnColor: "bg-gradient-to-r from-[rgb(220,38,38)] to-[rgb(37,99,235)] hover:from-[rgb(185,28,28)] hover:to-[rgb(29,78,216)] text-white",
     text:"Be a part of the legacy"  
   }
@@ -63,7 +63,7 @@ const Banner = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="w-full h-60 md:h-96 lg:h-[600px] bg-gray-100"
+      className="w-full h-60 md:h-96 lg:h-[600px] bg-black"
     >
       <Swiper
         modules={[Pagination, Autoplay]} // Removed Navigation

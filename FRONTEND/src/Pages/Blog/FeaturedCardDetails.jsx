@@ -4,7 +4,7 @@ import data from "./Data/data";
 const { BlogPosts } = data;
 
 const FeaturedCardDetails = () => {
-  const { id } = useParams();
+  const { id } = useParams();  // dynamic route
   const post = BlogPosts.find((p) => p.id === parseInt(id));
 
   if (!post) {

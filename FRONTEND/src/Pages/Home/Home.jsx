@@ -1,10 +1,10 @@
 import Partner from "../../components/partner";
 import Banner from "../../Shared/Banner";
 import About from "./About";
-import Achievements from "./Achievements";
 import BreakingNews from "./BreakingNews";
 import CurrentEvent from "./CurrentEvent";
-import CurrentPanel from "./CurrentPanel";
+import JoinBattle from "./JoinBattle";
+import NewsSlider from "./NewsSlider";
 
 const Home = () => {
 	return (
@@ -13,9 +13,9 @@ const Home = () => {
 			<BreakingNews></BreakingNews>
 			<About></About>
 			<Partner></Partner>
-			{/* <Achievements></Achievements> */}
+			<JoinBattle></JoinBattle>
+			{/* <NewsSlider></NewsSlider> */}
 			<CurrentEvent></CurrentEvent>
-			{/* <CurrentPanel /> */}
 		</div>
 	);
 };

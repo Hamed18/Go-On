@@ -9,7 +9,7 @@ const Blog = () => {
       <main className="px-24 mt-5 max-sm:px-5">
         <FeaturedPost></FeaturedPost>
         {/* <LatestPost></LatestPost> */}
-        <Subscribe></Subscribe>
+        {/* <Subscribe></Subscribe> */}
     
       </main>
     </>
