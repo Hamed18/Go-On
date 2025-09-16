@@ -17,7 +17,7 @@ const Navbar = () => {
         <NavLink to='/events'>Events</NavLink>
       </li>
       <li>
-        <NavLink to='/registrations'>Registration</NavLink>
+        <NavLink to='/enroll'>Play Now</NavLink>
       </li>
       <li>
         <NavLink to='/contact'>Contact</NavLink>
@@ -54,9 +54,9 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className='flex items-center btn btn-ghost text-2xl font-bold'>
+        <a className='flex items-center btn btn-ghost text-2xl font-bold' onClick={() => window.location.href = '/'}>
           <img src={logo} alt='ReeFood Logo' className='w-8 h-8 hidden' />
-          <h3 className='font-bold'>Go On</h3>
+          <h3 className='font-bold'>Go On</h3> {/* Go On Brand */}
         </a>
       </div>
       <div className='navbar-center hidden lg:flex'>

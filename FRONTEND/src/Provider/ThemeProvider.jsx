@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 
 export const ThemeContext = createContext()
 const ThemeProvider = ({children}) => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark");
+    const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
 
     useEffect(()=>{
         const root = document.documentElement;

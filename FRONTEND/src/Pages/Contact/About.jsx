@@ -396,13 +396,13 @@ const About = () => {
               {
                 name: "Rafiul Islam Alvi",
                 role: "Founder",
-                img: "https://randomuser.me/api/portraits/men/32.jpg",
+                img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757832478/0e28382d-956f-4433-82b0-2ebcabafb869.png",
                 bio: "Rafiul Islam Alvi is a former eSports player and the founder of Go On, a company dedicated to organizing competitive gaming tournaments.",
               },
               {
                 name: "Alfaz Uddin",
                 role: "Co-Founder",
-                img: "https://randomuser.me/api/portraits/men/44.jpg",
+                img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757832552/67494320-22ad-44e9-8dd9-d3be524aaf6f.png",
                 bio: "Alfaz Uddin is a hardworking entrepreneur and the co-founder of Go On Now. Known for his dedication and drive.",
               },
             ].map((member, index) => (
