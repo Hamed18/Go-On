@@ -70,7 +70,7 @@ const Headline = () => {
       </motion.div>
 
       {/* Register Now button */}
-      <Link to="/registrations">
+      <Link to="/enroll">
         <motion.button
           variants={fadeIn("right", 0.19)}
           initial="hidden"
