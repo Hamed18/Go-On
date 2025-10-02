@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../../utils/motion"; // Adjust path if needed
+import img1 from '../../assets/Images/GoOnShowdownBanner.jpg';
 
 const CurrentEvent = () => {
   return (
@@ -24,15 +25,16 @@ const CurrentEvent = () => {
       >
         Go On - Chittagong eSports Showdown 2025
       </motion.h3>
-      <Link to="/events">
+      <Link to="/enroll">
         <motion.img
           variants={fadeIn('up', 0.5)}
-          src="https://res.cloudinary.com/df5utoo6u/image/upload/v1757273311/2cba5ff7-ffb3-4c8c-bdac-0b12bf0a3465.png"
+          // src="https://res.cloudinary.com/df5utoo6u/image/upload/v1757273311/2cba5ff7-ffb3-4c8c-bdac-0b12bf0a3465.png"
+          src={img1}
           alt="Current Event"
           className="py-2 md:py-4 max-w-full h-auto rounded-lg shadow-md"
         />
       </Link>
-      <Link to="/events">
+      <Link to="/enroll">
   <motion.button
     variants={fadeIn('up', 0.6)}
     whileHover={{ scale: 1.05 }}
