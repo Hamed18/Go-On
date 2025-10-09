@@ -11,8 +11,8 @@ const Event = () => {
   }, []);
   return (
     <div className="">
-      <EventNews></EventNews>
       <CurrentFestBanner></CurrentFestBanner>
+      <EventNews></EventNews>
       <CurrentFest></CurrentFest>
       {/* <UnderConstruction></UnderConstruction> */}
       <div className="my-2 pb-4">
