@@ -4,9 +4,9 @@ import Home from "../Pages/Home/Home";
 import Event from "../Pages/Events/Event";
 import ErrorPage from "./ErrorPage";
 import About from "../Pages/Contact/About";
-import Blog from "../Pages/Blog/Blog"; 
+import Blog from "../Pages/Blog/Blog";
 import FeaturedCardDetails from "../Pages/Blog/FeaturedCardDetails";
-import Enroll from "../Pages/Enroll/Enroll";
+import TeamRegistrationForm from "../Pages/Enroll/TeamRegistrationForm";
 import Register from "@/Pages/Register";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import AdminDash from "@/Pages/admin/AdminDash";
@@ -32,29 +32,28 @@ const routes = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Blog></Blog>
+        element: <Blog></Blog>,
       },
       {
         path: "/contact",
         element: <About></About>,
       },
       {
-        path: "/blog/:id", 
+        path: "/blog/:id",
         element: <FeaturedCardDetails></FeaturedCardDetails>,
       },
       {
-        path: "/enroll", 
-        element: <Enroll></Enroll>
+        path: "/enroll",
+        element: <TeamRegistrationForm></TeamRegistrationForm>,
       },
-       {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/register",
-    element: <Register></Register>,
-  }
-      
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
     ],
   },
   {
@@ -68,7 +67,7 @@ const routes = createBrowserRouter([
       {
         path: "manage-users",
         element: <ManageUsers />,
-      }
+      },
     ],
   },
   {
@@ -85,6 +84,5 @@ const routes = createBrowserRouter([
       },
     ],
   },
- 
 ]);
 export default routes;
