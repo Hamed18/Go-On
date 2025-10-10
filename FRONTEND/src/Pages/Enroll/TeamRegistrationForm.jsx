@@ -1,24 +1,17 @@
 import axios from "axios";
-import { toast } from "sonner";
-import { motion } from "framer-motion";
-import { fadeIn } from "../../utils/motion";
 import React, { useState } from "react";
 import Enroll from "./Enroll";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function TeamRegistrationForm() {
   const initialPlayer = { fullName: "", inGameName: "", uid: "" };
   const [teamFullName, setTeamFullName] = useState("");
   const [teamShortName, setTeamShortName] = useState("");
-  const [players, setPlayers] = useState([
-    { ...initialPlayer },
-    { ...initialPlayer },
-    { ...initialPlayer },
-    { ...initialPlayer },
-    { ...initialPlayer },
-  ]);
-  const [submitted, setSubmitted] = useState(false);
+  const [players, setPlayers] = useState(Array(5).fill({ ...initialPlayer }));
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [serverMessage, setServerMessage] = useState(null);
 
   const inputClass = (error) =>
     `w-full rounded-lg border px-3 py-2 bg-gray-50 text-gray-900 placeholder-gray-400 
@@ -37,21 +30,19 @@ export default function TeamRegistrationForm() {
     const err = {};
     if (!teamFullName.trim()) err.teamFullName = "Team full name is required.";
     if (!teamShortName.trim()) err.teamShortName = "Team short name is required.";
-
     players.forEach((p, i) => {
       const base = `player${i + 1}`;
       if (!p.fullName.trim()) err[`${base}_fullName`] = "Full name required.";
       if (!p.inGameName.trim()) err[`${base}_inGameName`] = "In-game name required.";
       if (!p.uid.trim()) err[`${base}_uid`] = "In-game UID required.";
     });
-
     setErrors(err);
     return Object.keys(err).length === 0;
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(false);
+    setServerMessage(null);
     if (!validate()) return;
 
     const payload = {
@@ -66,35 +57,29 @@ export default function TeamRegistrationForm() {
 
     try {
       setLoading(true);
-      const res = await axios.post(
-        "http://localhost:4000/api/team-registration",
-        payload,
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:4000/api/team-registration", payload, {
+        headers: { "Content-Type": "application/json" },
+      });
 
       if (res.status === 200 || res.status === 201) {
-        toast.success("Team registered successfully!");
-        console.log("✅ Server response:", res.data);
-        setSubmitted(true);
+        toast.success("✅ Team registered successfully!");
+        setServerMessage({ type: "success", text: "Team registered successfully!" });
 
+        // Reset form
         setTeamFullName("");
         setTeamShortName("");
-        setPlayers([
-          { ...initialPlayer },
-          { ...initialPlayer },
-          { ...initialPlayer },
-          { ...initialPlayer },
-          { ...initialPlayer },
-        ]);
+        setPlayers(Array(5).fill({ ...initialPlayer }));
         setErrors({});
       }
     } catch (err) {
-      console.error("❌ Registration failed:", err);
-      const msg =
-        err.response?.data?.message ||
-        err.message ||
-        "Something went wrong while submitting!";
-      toast.error(msg);
+      const status = err.response?.status;
+      let msg = "Something went wrong!";
+      if (status === 400) msg = "Duplicate UID detected! One or more players already registered.";
+      else if (status === 500) msg = "Server error — please try again later.";
+      else if (err.response?.data?.message) msg = err.response.data.message;
+
+      toast.error(`❌ ${msg}`);
+      setServerMessage({ type: "error", text: msg });
     } finally {
       setLoading(false);
     }
@@ -103,6 +88,7 @@ export default function TeamRegistrationForm() {
   return (
     <>
       <Enroll />
+      <ToastContainer position="top-right" autoClose={4000} />
 
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">
         <h1 className="text-2xl md:text-3xl font-bold mb-2">Team Registration</h1>
@@ -121,9 +107,7 @@ export default function TeamRegistrationForm() {
                 className={inputClass(errors.teamFullName)}
                 placeholder="Example: The Phoenix Squad"
               />
-              {errors.teamFullName && (
-                <p className="text-xs text-red-500 mt-1">{errors.teamFullName}</p>
-              )}
+              {errors.teamFullName && <p className="text-xs text-red-500">{errors.teamFullName}</p>}
             </div>
 
             <div>
@@ -134,9 +118,7 @@ export default function TeamRegistrationForm() {
                 className={inputClass(errors.teamShortName)}
                 placeholder="Example: PHX"
               />
-              {errors.teamShortName && (
-                <p className="text-xs text-red-500 mt-1">{errors.teamShortName}</p>
-              )}
+              {errors.teamShortName && <p className="text-xs text-red-500">{errors.teamShortName}</p>}
             </div>
           </div>
 
@@ -145,76 +127,35 @@ export default function TeamRegistrationForm() {
           {/* Player Info */}
           <div className="space-y-4">
             {players.map((player, idx) => (
-              <fieldset
-                key={idx}
-                className="p-4 rounded-lg border border-gray-100 bg-gray-50 shadow-sm"
-              >
+              <fieldset key={idx} className="p-4 rounded-lg border bg-gray-50 shadow-sm">
                 <legend className="px-2 text-sm font-semibold">
                   {idx === 0 ? "IGL (Captain) — Player 1" : `Player ${idx + 1}`}
                 </legend>
-
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
-                  <div>
-                    <label className="block text-xs font-medium mb-1">Full name</label>
-                    <input
-                      value={player.fullName}
-                      onChange={(e) =>
-                        handlePlayerChange(idx, "fullName", e.target.value)
-                      }
-                      className={inputClass(errors[`player${idx + 1}_fullName`])}
-                      placeholder="e.g. Hamed Hasan"
-                    />
-                    {errors[`player${idx + 1}_fullName`] && (
-                      <p className="text-xs text-red-500 mt-1">
-                        {errors[`player${idx + 1}_fullName`]}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium mb-1">In-Game Name</label>
-                    <input
-                      value={player.inGameName}
-                      onChange={(e) =>
-                        handlePlayerChange(idx, "inGameName", e.target.value)
-                      }
-                      className={inputClass(errors[`player${idx + 1}_inGameName`])}
-                      placeholder="e.g. H4MED"
-                    />
-                    {errors[`player${idx + 1}_inGameName`] && (
-                      <p className="text-xs text-red-500 mt-1">
-                        {errors[`player${idx + 1}_inGameName`]}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium mb-1">In-Game UID</label>
-                    <input
-                      value={player.uid}
-                      onChange={(e) =>
-                        handlePlayerChange(idx, "uid", e.target.value)
-                      }
-                      className={inputClass(errors[`player${idx + 1}_uid`])}
-                      placeholder="e.g. 123456789"
-                    />
-                    {errors[`player${idx + 1}_uid`] && (
-                      <p className="text-xs text-red-500 mt-1">
-                        {errors[`player${idx + 1}_uid`]}
-                      </p>
-                    )}
-                  </div>
+                  {["fullName", "inGameName", "uid"].map((field) => (
+                    <div key={field}>
+                      <label className="block text-xs font-medium mb-1">{field}</label>
+                      <input
+                        value={player[field]}
+                        onChange={(e) => handlePlayerChange(idx, field, e.target.value)}
+                        className={inputClass(errors[`player${idx + 1}_${field}`])}
+                      />
+                      {errors[`player${idx + 1}_${field}`] && (
+                        <p className="text-xs text-red-500">{errors[`player${idx + 1}_${field}`]}</p>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </fieldset>
             ))}
           </div>
 
-          {/* Buttons */}
+          {/* Buttons & server message */}
           <div className="flex flex-col md:flex-row items-center gap-3">
             <button
               type="submit"
               disabled={loading}
-              className={`px-5 py-2 rounded-lg font-medium text-white shadow-sm w-full md:w-auto ${
+              className={`px-5 py-2 rounded-lg text-white ${
                 loading ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
               }`}
             >
@@ -226,27 +167,21 @@ export default function TeamRegistrationForm() {
               onClick={() => {
                 setTeamFullName("");
                 setTeamShortName("");
-                setPlayers([
-                  { ...initialPlayer },
-                  { ...initialPlayer },
-                  { ...initialPlayer },
-                  { ...initialPlayer },
-                  { ...initialPlayer },
-                ]);
+                setPlayers(Array(5).fill({ ...initialPlayer }));
                 setErrors({});
-                setSubmitted(false);
+                setServerMessage(null);
               }}
-              className="px-4 py-2 rounded-lg border font-medium w-full md:w-auto"
+              className="px-4 py-2 rounded-lg border"
             >
               Reset
             </button>
-
-            {submitted && (
-              <p className="text-sm text-green-700 mt-2 md:mt-0">
-                Registration submitted successfully ✅
-              </p>
-            )}
           </div>
+
+          {serverMessage && (
+            <p className={`mt-4 text-sm ${serverMessage.type === "success" ? "text-green-600" : "text-red-600"}`}>
+              {serverMessage.text}
+            </p>
+          )}
         </form>
       </div>
     </>
