@@ -1,0 +1,2 @@
+
+show error in fronted ui for same email registration

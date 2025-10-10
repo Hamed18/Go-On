@@ -45,7 +45,7 @@ const Enroll = () => {
             <span className="text-yellow-300">
               Go On - Chittagong eSports Showdown 2025
             </span>{" "}
-            is Coming Next!
+            is Coming!
           </motion.h1>
 
           <motion.p

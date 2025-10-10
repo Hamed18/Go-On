@@ -11,6 +11,8 @@ import {
   Package,
   CreditCard,
   LogOut,
+  Home,
+  Newspaper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -18,6 +20,7 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { toast } from "sonner";
+import { MdSports } from "react-icons/md";
 
 const DashboardLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -35,13 +38,16 @@ const DashboardLayout = () => {
   };
 
   const adminItems = [
-    { name: "Dashboard", icon: LayoutDashboard, href: "/admin/dash" },
-    { name: "Users", icon: Users, href: "/admin/manage-users" }
-  ];
+  { name: "Home", icon: Home, href: "/" },
+  { name: "Users", icon: LayoutDashboard, href: "/admin/dash" },
+  { name: "Registered Teams", icon: Users, href: "/admin/manage-users" }
+];
 
   const userItems = [
+    { name: "Home", icon: Home, href: "/" },
     { name: "Dashboard", icon: LayoutDashboard, href: "/user/dash" },
-    { name: "Profile", icon: User, href: "/user/profile" }
+    { name: "Profile", icon: User, href: "/user/profile" },
+    { name: "E-Sports News", icon: Newspaper, href: "/blog" }
   ];
 
   const currentItems = role === "admin" ? adminItems : userItems;

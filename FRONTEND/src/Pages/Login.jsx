@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-// import logo from "@/assets/logo.png"; // Make sure to import your logo
-import logo from '../../src/assets/logo.jpg';
-
+import logo from "../../src/assets/logo.jpg";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,6 +29,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [loginUser, { isLoading }] = useLoginMutation();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -38,18 +37,30 @@ const Login = () => {
   });
 
   async function onSubmit(data) {
-    const toastId = toast.loading("User Login....");
+    setErrorMessage("");
+    const toastId = toast.loading("Logging in...");
 
     try {
       const res = await loginUser(data).unwrap();
       console.log(res);
+
       dispatch(setUser({ user: res.data, token: res.token }));
-      toast.success("User Logged In!", { id: toastId });
+      toast.success("Login successful!", { id: toastId });
       form.reset();
-      navigate("/");
+      navigate("/user/dash");
     } catch (error) {
       console.error("Login error:", error);
-      toast.error("User not logged in!", { id: toastId });
+
+      // Handle backend error response
+      let message = "Login failed. Please check your credentials.";
+      if (error?.data?.message) {
+        message = error.data.message;
+      } else if (error?.error) {
+        message = error.error;
+      }
+
+      setErrorMessage(message);
+      toast.error(message, { id: toastId });
     }
   }
 
@@ -66,6 +77,7 @@ const Login = () => {
               </span>
             </h2>
           </div>
+
           <h1 className="text-lg font-bold text-center my-8">Login</h1>
 
           <Form {...form}>
@@ -98,6 +110,11 @@ const Login = () => {
                 )}
               />
 
+              {/* Show login error in UI */}
+              {errorMessage && (
+                <p className="text-red-600 text-sm text-center">check your email and password again</p>
+              )}
+
               <Button
                 type="submit"
                 className="w-full mt-6 bg-blue-600 hover:bg-blue-700"
@@ -105,7 +122,7 @@ const Login = () => {
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">
-                    <Loader className="animate-spin" /> logging...
+                    <Loader className="animate-spin" /> Logging...
                   </span>
                 ) : (
                   "Login"
@@ -116,7 +133,7 @@ const Login = () => {
 
           <div className="mt-6 text-center text-sm">
             <p>
-              Don't have an account?{" "}
+              Don’t have an account?{" "}
               <Link to="/register" className="font-medium text-primary hover:underline">
                 Sign up
               </Link>

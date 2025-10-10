@@ -65,7 +65,7 @@ const Headline = () => {
           animate="show"
           className="text-sm md:text-xl font-semibold md:font-bold"
         >
-          Go On - Chittagong eSports Showdown 2025 coming next!
+          Go On - Chittagong eSports Showdown!
         </motion.h3>
       </motion.div>
 

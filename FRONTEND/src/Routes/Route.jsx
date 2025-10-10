@@ -15,6 +15,7 @@ import ProtectedRoute from "@/components/layout/ProtectedRoute";
 import UserDash from "@/Pages/User/UserDash";
 import Login from "@/Pages/Login";
 import App from "@/App";
+import UserProfile from "@/Pages/User/UserProfile";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +82,10 @@ const routes = createBrowserRouter([
       {
         path: "dash",
         element: <UserDash />,
+      },
+      {
+        path: "Profile",
+        element: <UserProfile />,
       },
     ],
   },

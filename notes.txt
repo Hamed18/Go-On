@@ -1,0 +1,22 @@
+i am implementing login register in a project. always use the following,
+frontend: react, tailwind css. backend: express, node, typescript, mongoedb. 
+
+always, use my above told tech whene suggest me code. 
+
+also, remember i will compare my code with another repo. so donn't confuse, suggest code on my preference 
+
+
+compare following code with the above code and tell where to fix in the following code
+
+
+Auth Redux Slice: logout action and selectCurrentUser selector.
+
+
+i am using react js. do changes for it but don't change anything else
+
+it's authSlice.ts . i am using react js in frontend. now make necessary changes here within the file and filename
+
+
+POST http://localhost:4000/api/teams/register
+
+Would you like me to give you the TypeScript RTK Query slice (teamRegistration.api.ts) to handle this endpoint cleanly from the frontend too? It’ll plug directly into your existing baseApi.
