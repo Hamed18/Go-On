@@ -46,7 +46,7 @@ const DashboardLayout = () => {
   const userItems = [
     { name: "Home", icon: Home, href: "/" },
     { name: "Dashboard", icon: LayoutDashboard, href: "/user/dash" },
-    { name: "Profile", icon: User, href: "/user/profile" },
+/*    { name: "Profile", icon: User, href: "/user/profile" },  */
     { name: "E-Sports News", icon: Newspaper, href: "/blog" }
   ];
 

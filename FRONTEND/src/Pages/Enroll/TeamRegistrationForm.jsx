@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Enroll from "./Enroll";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utils/motion"; 
 
 export default function TeamRegistrationForm() {
   const initialPlayer = { fullName: "", inGameName: "", uid: "" };
@@ -87,7 +88,60 @@ export default function TeamRegistrationForm() {
 
   return (
     <>
-      <Enroll />
+        {/* First Banner Section */}
+      <motion.section
+        variants={fadeIn("up", 0.7)}
+        initial="hidden"
+        whileInView="show"
+        className="relative bg-indigo-700 text-white text-center px-6 py-16 rounded-2xl shadow-md sm:mb-12 md:mb-16 overflow-hidden"
+      >
+        {/* Background Gaming Image */}
+        <motion.div
+          variants={fadeIn("up", 0.71)}
+          className="absolute inset-0 opacity-20"
+          initial="hidden"
+          whileInView="show"
+        >
+          <motion.img
+            variants={fadeIn("up", 0.715)}
+            initial="hidden"
+            whileInView="show"
+            src="https://res.cloudinary.com/df5utoo6u/image/upload/v1757263229/HomePagePic1_erz15a.jpg"
+            alt="Gaming event"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          variants={fadeIn("up", 0.72)}
+          initial="hidden"
+          whileInView="show"
+          className="relative z-10 max-w-4xl mx-auto"
+        >
+          <motion.h1
+            variants={fadeIn("up", 0.73)}
+            initial="hidden"
+            whileInView="show"
+            className="text-2xl md:text-4xl font-bold mb-6"
+          >
+            Enrollment for{" "}
+            <span className="text-yellow-300">
+              Go On - Chittagong eSports Showdown 2025
+            </span>{" "}
+            is Coming!
+          </motion.h1>
+
+          <motion.p
+            variants={fadeIn("up", 0.74)}
+            initial="hidden"
+            whileInView="show"
+            className="italic text-lg md:text-xl font-medium"
+          >
+            Stay connected and gear up for the ultimate gaming showdown.
+          </motion.p>
+        </motion.div>
+      </motion.section>
       <ToastContainer position="top-right" autoClose={4000} />
 
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">

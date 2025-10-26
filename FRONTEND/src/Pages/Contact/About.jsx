@@ -4,9 +4,11 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaUsers,
+  FaArrowRight,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../../utils/motion";
+import { Link } from "react-router-dom";
 
 const SectionTitle = ({ subtitle, title }) => (
   <motion.div variants={fadeIn("up", 0.2)} className="mb-6">
@@ -125,84 +127,6 @@ const About = () => {
           </div>
         </motion.section>
 
-        {/* Mission, Values, Contact */}
-        {/* <motion.section
-          variants={fadeIn("up", 0.5)}
-          className="grid md:grid-cols-3 gap-8 mb-16"
-        >
-          <motion.div
-            variants={fadeIn("left", 0.51)}
-            className="bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition hover:-translate-y-1"
-          >
-            <motion.div variants={fadeIn("up", 0.52)}>
-              <FaGamepad className="text-green-600 text-4xl mx-auto mb-4" />
-            </motion.div>
-            <motion.h3
-              variants={textVariant(0.53)}
-              className="font-bold text-xl mb-3 text-center text-gray-700"
-            >
-              Our Mission
-            </motion.h3>
-            <motion.p
-              variants={fadeIn("up", 0.54)}
-              className="text-center text-gray-700 font-semibold "
-            >
-              To empower gamer and esports communities with joy and
-              entertainment.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            variants={fadeIn("up", 0.55)}
-            className="bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition hover:-translate-y-1"
-          >
-            <motion.div variants={fadeIn("up", 0.56)}>
-              <FaLeaf className="text-blue-500 text-4xl mx-auto mb-4" />
-            </motion.div>
-            <motion.h3
-              variants={textVariant(0.57)}
-              className="font-bold text-xl mb-3 text-center text-gray-700"
-            >
-              Our Values
-            </motion.h3>
-            <motion.ul
-              variants={fadeIn("up", 0.58)}
-              className="text-gray-700 space-y-2 text-center font-semibold"
-            >
-              <li>• Fair Play</li>
-              <li>• Trust</li>
-              <li>• Customer-Centricity</li>
-              <li>• Inclusiveness</li>
-            </motion.ul>
-          </motion.div>
-
-          <motion.div
-            variants={fadeIn("right", 0.59)}
-            className="bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition hover:-translate-y-1"
-          >
-            <motion.div variants={fadeIn("up", 0.6)}>
-              <FaPhoneAlt className="text-yellow-600 text-3xl mx-auto mb-3" />
-            </motion.div>
-            <motion.h3
-              variants={textVariant(0.61)}
-              className="font-bold text-xl mb-3 text-center text-gray-700"
-            >
-              Contact Us
-            </motion.h3>
-            <motion.div
-              variants={fadeIn("up", 0.62)}
-              className="text-gray-700 space-y-2 text-center font-semibold"
-            >
-              <p className="flex items-center justify-center">
-                <FaEnvelope className="mr-2" /> goonbdofficial@gmail.com
-              </p>
-              <p className="flex items-center justify-center">
-                <FaPhoneAlt className="mr-2" /> +880 1806263784
-              </p>
-              <p className="mt-4 text-sm">Lalkhan Bazar, Chittagong</p>
-            </motion.div>
-          </motion.div>
-        </motion.section> */}
         <motion.section
           variants={fadeIn("up", 0.5)}
           initial="hidden"
@@ -296,53 +220,6 @@ const About = () => {
         </motion.section>
 
         {/* Quote Section */}
-       
-        {/* <motion.section
-          variants={fadeIn("up", 0.7)}
-          initial="hidden"
-          whileInView="show"
-          className="relative bg-blue-600 text-white text-center px-6 py-12 rounded-2xl shadow-md mb-16 overflow-hidden"
-        >
-          <motion.div
-            variants={fadeIn("up", 0.71)}
-            className="absolute inset-0 opacity-10"
-            initial="hidden"
-            whileInView="show"
-          >
-            <motion.img
-              variants={fadeIn("up", 0.715)}
-              initial="hidden"
-              whileInView="show"
-              src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80"
-              alt="Gaming contest"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          <motion.div
-            variants={fadeIn("up", 0.72)}
-            initial="hidden"
-            whileInView="show"
-            className="relative z-10 max-w-3xl mx-auto"
-          >
-            <motion.blockquote
-              variants={fadeIn("up", 0.73)}
-              initial="hidden"
-              whileInView="show"
-              className="italic text-xl md:text-2xl mb-6"
-            >
-              "Life is like playing with mind. To keep your balance, you must
-              keep playing."
-            </motion.blockquote>
-            <motion.p
-              variants={fadeIn("up", 0.74)}
-              initial="hidden"
-              whileInView="show"
-              className="font-semibold text-lg"
-            >
-              – Mr. De Caprio
-            </motion.p>
-          </motion.div>
-        </motion.section> */}
 
         {/* Meet the Team */}
         <motion.section
@@ -405,6 +282,12 @@ const About = () => {
                 img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1757832552/67494320-22ad-44e9-8dd9-d3be524aaf6f.png",
                 bio: "Alfaz Uddin is a hardworking entrepreneur and the co-founder of Go On Now. Known for his dedication and drive.",
               },
+              {
+                name: "Hamed Hasan",
+                role: "Developer",
+                img: "https://res.cloudinary.com/df5utoo6u/image/upload/v1760731810/myPic_genqo7.jpg",
+                bio: "A passionate full-stack developer who built and maintains Go On’s web platform, ensuring smooth user experience and scalable performance.",
+              },
             ].map((member, index) => (
               <motion.div
                 key={index}
@@ -422,16 +305,16 @@ const About = () => {
                   whileInView="show"
                   src={member.img}
                   alt={member.name}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-green-100"
+                  className="w-36 h-36 rounded-full mx-auto mb-4 object-cover border-4 border-green-100"
                 />
-                <motion.h4
+                <motion.h3
                   variants={textVariant(0.83)}
                   initial="hidden"
                   whileInView="show"
                   className="font-bold text-lg"
                 >
                   {member.name}
-                </motion.h4>
+                </motion.h3>
                 <motion.p
                   variants={fadeIn("up", 0.84)}
                   initial="hidden"
@@ -479,6 +362,20 @@ const About = () => {
               Visit our shop or browse our online platform to find your perfect
               gaming experience.
             </motion.p>
+            {/* Register Now button */}
+            <div className="flex justify-center mt-6">
+              <Link to="/enroll">
+                <motion.button
+                  variants={fadeIn("right", 0.19)}
+                  initial="hidden"
+                  animate="show"
+                  className="flex items-center text-sm md:text-xl font-semibold md:font-bold bg-yellow-400 hover:bg-red-400 text-violet-500 px-3 md:px-4 py-2 md:py-3 rounded-full transition duration-300 ease-in-out shadow-md hover:shadow-lg"
+                >
+                  Register Now
+                  <FaArrowRight className="ml-2" />
+                </motion.button>
+              </Link>
+            </div>
           </div>
         </motion.section>
       </main>
