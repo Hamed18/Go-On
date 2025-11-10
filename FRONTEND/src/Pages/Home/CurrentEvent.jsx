@@ -25,7 +25,7 @@ const CurrentEvent = () => {
       >
         Go On - Chittagong eSports Showdown 2025
       </motion.h3>
-      <Link to="/enroll">
+      <Link to="/events">
         <motion.img
           variants={fadeIn('up', 0.5)}
           // src="https://res.cloudinary.com/df5utoo6u/image/upload/v1757273311/2cba5ff7-ffb3-4c8c-bdac-0b12bf0a3465.png"
@@ -34,7 +34,7 @@ const CurrentEvent = () => {
           className="py-2 md:py-4 max-w-full h-auto rounded-lg shadow-md"
         />
       </Link>
-      <Link to="/enroll">
+      <Link to="/events">
   <motion.button
     variants={fadeIn('up', 0.6)}
     whileHover={{ scale: 1.05 }}

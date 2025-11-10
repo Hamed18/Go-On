@@ -84,7 +84,7 @@ const Register = () => {
             <h2 className="flex flex-col justify-center uppercase">
               <span className="font-bold text-xl md:text-3xl">Go On</span>
               <span className="-mt-1 font-normal text-xs md:text-sm tracking-widest">
-                Upgrade your Gaming Experience
+                Compete to Win!!
               </span>
             </h2>
           </div>

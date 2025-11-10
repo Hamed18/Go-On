@@ -40,7 +40,7 @@ const JoinBattle = () => {
         whileInView="show"
         className="flex justify-center mt-8 mb-6"
       >
-        <Link to="/enroll">
+        <Link to="/events">
           <button className="buttonStyle">
             Join the Battle
           </button>

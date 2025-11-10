@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
-import { FaBullhorn, FaTimes, FaArrowRight } from "react-icons/fa";
+import { FaBullhorn, FaArrowRight } from "react-icons/fa";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// 🧠 Import Redux hooks
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 
 const fadeIn = (direction = "up", delay = 0) => ({
   hidden: {
@@ -23,56 +29,60 @@ const fadeIn = (direction = "up", delay = 0) => ({
 
 const Headline = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const navigate = useNavigate();
 
-  if (!isVisible) return null; // Hide component when not visible
+  // ✅ Get current user from Redux store
+  const user = useAppSelector(selectCurrentUser);
+
+  const handleRegisterClick = () => {
+    if (!user) {
+      // 🔒 User not logged in
+      toast.info("🔐 Please log in first to register.", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      setTimeout(() => navigate("/login"), 2000);
+    } else {
+      // ✅ User is logged in
+      navigate("/enroll");
+    }
+  };
+
+  if (!isVisible) return null;
 
   return (
-    <motion.div
-      variants={fadeIn("up", 0.05)}
-      initial="hidden"
-      animate="show"
-      className="relative flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-red-700/80 to-blue-700/80 py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-lg"
-    >
-      {/* Close button */}
-      {/* <motion.button
-        variants={fadeIn("right", 0.1)}
-        initial="hidden"
-        animate="show"
-        className="absolute top-2 right-2 md:right-4 text-white hover:text-gray-300 transition"
-        onClick={() => setIsVisible(false)}
-        aria-label="Close"
-      >
-        <FaTimes className="text-xl md:text-2xl ml-2 space-x-2 md:space-x-4" />
-      </motion.button> */}
-
-      {/* Message with icon */}
+    <>
+      <ToastContainer />
       <motion.div
-        variants={fadeIn("left", 0.12)}
+        variants={fadeIn("up", 0.05)}
         initial="hidden"
         animate="show"
-        className="flex items-center gap-3"
+        className="relative flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-red-700/80 to-blue-700/80 py-2 px-4 md:py-3 md:px-6 rounded-lg shadow-lg"
       >
-        <motion.span
-          variants={fadeIn("up", 0.15)}
+        {/* Left section with icon and text */}
+        <motion.div
+          variants={fadeIn("left", 0.12)}
           initial="hidden"
           animate="show"
+          className="flex items-center gap-3"
         >
-          <FaBullhorn className="text-yellow-300 text-2xl md:text-4xl" />
-        </motion.span>
-        <motion.h3
-          variants={fadeIn("up", 0.17)}
-          initial="hidden"
-          animate="show"
-          className="text-sm md:text-xl font-semibold md:font-bold"
-        >
-          Go On - Chittagong eSports Showdown!
-        </motion.h3>
-      </motion.div>
+          <motion.span variants={fadeIn("up", 0.15)} initial="hidden" animate="show">
+            <FaBullhorn className="text-yellow-300 text-2xl md:text-4xl" />
+          </motion.span>
+          <motion.h3
+            variants={fadeIn("up", 0.17)}
+            initial="hidden"
+            animate="show"
+            className="text-sm md:text-xl font-semibold md:font-bold"
+          >
+            Go On - Chittagong eSports Showdown!
+          </motion.h3>
+        </motion.div>
 
-      {/* Register Now button */}
-      <div className="flex justify-center mt-2">
-        <Link to="/enroll">
+        {/* Register Now button */}
+        <div className="flex justify-center mt-2">
           <motion.button
+            onClick={handleRegisterClick}
             variants={fadeIn("right", 0.19)}
             initial="hidden"
             animate="show"
@@ -81,9 +91,9 @@ const Headline = () => {
             Register Now
             <FaArrowRight className="ml-2" />
           </motion.button>
-        </Link>
-      </div>
-    </motion.div>
+        </div>
+      </motion.div>
+    </>
   );
 };
 

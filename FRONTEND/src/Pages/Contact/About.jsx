@@ -364,14 +364,14 @@ const About = () => {
             </motion.p>
             {/* Register Now button */}
             <div className="flex justify-center mt-6">
-              <Link to="/enroll">
+              <Link to="/events">
                 <motion.button
                   variants={fadeIn("right", 0.19)}
                   initial="hidden"
                   animate="show"
                   className="flex items-center text-sm md:text-xl font-semibold md:font-bold bg-yellow-400 hover:bg-red-400 text-violet-500 px-3 md:px-4 py-2 md:py-3 rounded-full transition duration-300 ease-in-out shadow-md hover:shadow-lg"
                 >
-                  Register Now
+                  View Event
                   <FaArrowRight className="ml-2" />
                 </motion.button>
               </Link>

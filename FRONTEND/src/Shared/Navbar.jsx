@@ -59,7 +59,7 @@ const Navbar = () => {
   const navItems = [
     { to: "/", label: "Home", show: true },
     { to: "/events", label: "Events", show: true },
-    { to: "/blog", label: "Blog", show: true },
+    { to: "/blog", label: "News", show: true },
     { to: "/contact", label: "Contact", show: true },
     /* { to: "/enroll", label: "Enroll", show: true },  */
     { to: "/login", label: "Login", show: !user },
