@@ -59,7 +59,7 @@ const About = () => {
         {/* Content */}
         <motion.div
           variants={fadeIn("up", 0.5)}
-          className="relative z-10 h-full flex items-center justify-center text-center px-4 text-white"
+          className="relative z-10 h-full flex items-center justify-center text-center text-white"
         >
           <motion.div variants={fadeIn("up", 0.6)} className="max-w-2xl">
             <motion.h1
@@ -138,7 +138,7 @@ const About = () => {
               variants={fadeIn("left", 0.51)}
               initial="hidden"
               whileInView="show"
-              className="bg-white p-8 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition hover:-translate-y-1"
+              className="bg-white py-8 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition hover:-translate-y-1"
             >
               <motion.div variants={fadeIn("up", 0.52)}>
                 <FaGamepad className="text-green-600 text-4xl mx-auto mb-4" />
@@ -243,7 +243,7 @@ const About = () => {
               variants={fadeIn("up", 0.77)}
               initial="hidden"
               whileInView="show"
-              className="w-20 h-1 bg-green-500 mx-auto mb-8"
+              className=" h-1 bg-green-500 mx-auto mb-8"
             />
           </div>
           <div>

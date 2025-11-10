@@ -63,7 +63,7 @@ const Banner = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className="px-4 sm:px-6 lg:px-8 h-60 md:h-96 lg:h-[600px] bg-black"
+      className="px-4 sm:px-6 lg:px-8 lg:16 h-60 md:h-96 lg:h-[600px] bg-black"
     >
       <Swiper
         modules={[Pagination, Autoplay]} // Removed Navigation
