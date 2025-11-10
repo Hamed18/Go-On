@@ -25,7 +25,7 @@ const JoinBattle = () => {
       >
         <iframe
           className="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/GCWkjdE8TQw?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/LlDa1EAemhg?si=sgnt5oVDPr0w5cUE"
           title="Go On eSports Teaser"
           frameBorder="0"
           allow="autoplay; encrypted-media; fullscreen"

@@ -5,6 +5,7 @@ import BreakingNews from "./BreakingNews";
 import CurrentEvent from "./CurrentEvent";
 import JoinBattle from "./JoinBattle";
 import NewsSlider from "./NewsSlider";
+import NextEvent from "./NextEvent";
 
 const Home = () => {
 	return (
@@ -16,6 +17,7 @@ const Home = () => {
 			<JoinBattle></JoinBattle>
 			{/* <NewsSlider></NewsSlider> */}
 			<CurrentEvent></CurrentEvent>
+			<NextEvent></NextEvent>
 		</div>
 	);
 };

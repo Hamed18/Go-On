@@ -14,7 +14,6 @@ import { RiTeamLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 // 🧠 Redux
 import { useAppSelector } from "@/redux/hooks";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
@@ -56,7 +55,7 @@ const CurrentFest = () => {
           className="text-3xl md:text-5xl font-bold flex items-center justify-center gap-3"
         >
           <MdLocationOn className="text-yellow-300" />
-          Go On – Chittagong eSports Showdown 2025
+          Go on-Esports Campus fest 2025
           <GiPartyPopper className="text-yellow-300" />
         </motion.h1>
         <motion.div
@@ -93,12 +92,15 @@ const CurrentFest = () => {
                 icon: <FaUsers className="text-blue-400" />,
                 text: (
                   <>
-                    Chittagong is set to host one of its most thrilling gaming
-                    events — <strong>Go On – eSports Showdown 2025!</strong>{" "}
-                    Bringing together students, local pros, and Free Fire fans
+                    <strong>Go on-Esports Campus fest 2025</strong>{" "} will be the biggest esports 
+                    event in Chittagong this year. You can also earn a free entry spot at Omargani M.E.S. College and a custom 
+                    team jersey from Classico by winning the campus play-offs. 
+                    Registration opens on <span className="text-yellow-500 font-bold">Thursday, 13 November.</span>{" "} Sign up and compete to win.
+
+                    {/* Bringing together students, local pros, and E-Sports fans
                     for an unforgettable competitive experience with a{" "}
                     <span className="text-yellow-500 font-bold">2,00,000৳</span>{" "}
-                    prize pool! 💰
+                    prize pool! 💰 */}
                   </>
                 ),
               },
