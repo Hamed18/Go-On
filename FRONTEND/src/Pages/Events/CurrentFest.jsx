@@ -74,7 +74,7 @@ const CurrentFest = () => {
                     events — <strong>Go On – eSports Showdown 2025!</strong>{" "}
                     Bringing together students, local pros, and Free Fire fans
                     for an unforgettable competitive experience with a{" "}
-                    <span className="text-yellow-500 font-bold">1,50,000৳</span>{" "}
+                    <span className="text-yellow-500 font-bold">2,00,000৳</span>{" "}
                     prize pool! 💰
                   </>
                 ),

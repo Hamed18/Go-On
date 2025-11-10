@@ -23,7 +23,6 @@ const Navbar = () => {
 
   // local fallback state (only used when no provider)
   const [localTheme, setLocalTheme] = useState(() => {
-    // initial: try localStorage, then document element class, then light
     try {
       const stored = localStorage.getItem('theme');
       if (stored === 'dark' || stored === 'light') return stored;
@@ -39,21 +38,18 @@ const Navbar = () => {
   const toggleTheme = hasContext
     ? themeContext.toggleTheme
     : () => {
-        // fallback toggle: toggle html 'dark' class and persist
         const next = theme === 'dark' ? 'light' : 'dark';
         setLocalTheme(next);
         try {
           if (next === 'dark') document.documentElement.classList.add('dark');
           else document.documentElement.classList.remove('dark');
           localStorage.setItem('theme', next);
-        } catch (e) {
-          // ignore (server side or restricted storage)
-        }
+        } catch (e) {}
       };
 
-  // Keep document class in sync when using local fallback (for initial render or updates)
+  // Keep document class in sync when using local fallback
   useEffect(() => {
-    if (hasContext) return; // provider owns state; don't override
+    if (hasContext) return;
     try {
       if (localTheme === 'dark') document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
@@ -65,7 +61,7 @@ const Navbar = () => {
     { to: "/events", label: "Events", show: true },
     { to: "/blog", label: "Blog", show: true },
     { to: "/contact", label: "Contact", show: true },
- /* { to: "/enroll", label: "Enroll", show: true },  */
+    /* { to: "/enroll", label: "Enroll", show: true },  */
     { to: "/login", label: "Login", show: !user },
   ];
 
@@ -83,7 +79,7 @@ const Navbar = () => {
             <h2 className="flex flex-col justify-center uppercase">
               <span className="font-bold text-xl md:text-3xl">Go On</span>
               <span className="-mt-1 font-normal text-xs md:text-sm tracking-widest">
-                Upgrade your Gaming
+                Compete to Win!
               </span>
             </h2>
           </div>
@@ -112,41 +108,9 @@ const Navbar = () => {
                 </NavLink>
               ))}
 
-            {/* Theme Toggle Button */}
-              {/* <label className="swap swap-rotate cursor-pointer">
-              <input
-                type="checkbox"
-                checked={theme === "dark"}
-                onChange={toggleTheme}
-                className="hidden"
-                aria-label="Toggle theme"
-              />
-            </label> 
-            <svg  */}
-              {/* //   className="swap-off h-6 w-6 fill-current"
-              //   xmlns="http://www.w3.org/2000/svg"
-              //   viewBox="0 0 24 24"
-              // >
-              //   <path d="M5.64,17l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,5.64,17ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Z" />
-              // </svg> */}
-
-              {/* Moon Icon */}
-            {/* //   <svg
-            //     className="swap-on h-6 w-6 fill-current"
-            //     xmlns="http://www.w3.org/2000/svg"
-            //     viewBox="0 0 24 24"
-            //   >
-            //     <path d="M21.64,13a1,1,0,0,0-1.05-.14A8.05,8.05,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z" />
-            //   </svg>
-            // </label>    */}
-
-            {user && <LoginMenu />}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
-            {/* Theme Toggle in Mobile */}
-            {/* <label className="swap swap-rotate cursor-pointer">
+            {/* ======= THEME TOGGLE (COMMENTED OUT) ======= */}
+            {/*
+            <label className="swap swap-rotate cursor-pointer">
               <input
                 type="checkbox"
                 checked={theme === "dark"}
@@ -168,7 +132,42 @@ const Navbar = () => {
               >
                 <path d="M21.64,13a1,1,0,0,0-1.05-.14A8.05,8.05,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z" />
               </svg>
-            </label> */}
+            </label>
+            */}
+            {/* ======= END THEME TOGGLE ======= */}
+
+            {user && <LoginMenu />}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* ======= MOBILE THEME TOGGLE (COMMENTED OUT) ======= */}
+            {/*
+            <label className="swap swap-rotate cursor-pointer">
+              <input
+                type="checkbox"
+                checked={theme === "dark"}
+                onChange={toggleTheme}
+                className="hidden"
+                aria-label="Toggle theme"
+              />
+              <svg
+                className="swap-off h-6 w-6 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5.64,17l-.71.71a1,1,0,1,0,1.41,1.41l.71-.71A1,1,0,0,0,5.64,17ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Z" />
+              </svg>
+              <svg
+                className="swap-on h-6 w-6 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14A8.05,8.05,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Z" />
+              </svg>
+            </label>
+            */}
+            {/* ======= END MOBILE THEME TOGGLE ======= */}
 
             {/* Mobile Menu Sheet */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>

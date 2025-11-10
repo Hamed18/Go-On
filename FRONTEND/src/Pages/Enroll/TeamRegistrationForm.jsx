@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
-import { fadeIn } from "../../utils/motion"; 
+import { fadeIn } from "../../utils/motion";
 
 export default function TeamRegistrationForm() {
-  const initialPlayer = { fullName: "", inGameName: "", uid: "" };
+  const initialPlayer = { fullName: "", inGameName: "", uid: "", roll: "" };
+  const [institution, setInstitution] = useState("");
   const [teamFullName, setTeamFullName] = useState("");
   const [teamShortName, setTeamShortName] = useState("");
   const [players, setPlayers] = useState(Array(5).fill({ ...initialPlayer }));
@@ -29,14 +30,21 @@ export default function TeamRegistrationForm() {
 
   function validate() {
     const err = {};
+    if (!institution.trim()) err.institution = "Institution name is required.";
     if (!teamFullName.trim()) err.teamFullName = "Team full name is required.";
     if (!teamShortName.trim()) err.teamShortName = "Team short name is required.";
+
     players.forEach((p, i) => {
       const base = `player${i + 1}`;
       if (!p.fullName.trim()) err[`${base}_fullName`] = "Full name required.";
       if (!p.inGameName.trim()) err[`${base}_inGameName`] = "In-game name required.";
       if (!p.uid.trim()) err[`${base}_uid`] = "In-game UID required.";
+      if (!p.roll.trim()) err[`${base}_roll`] = "Roll is required.";
+      if (i === 0 && !p.whatsapp?.trim()) err[`${base}_whatsapp`] = "WhatsApp number required.";
+      if (i === 0 && p.whatsapp && !/^\d{10,15}$/.test(p.whatsapp))
+        err[`${base}_whatsapp`] = "Invalid WhatsApp number.";
     });
+
     setErrors(err);
     return Object.keys(err).length === 0;
   }
@@ -47,6 +55,7 @@ export default function TeamRegistrationForm() {
     if (!validate()) return;
 
     const payload = {
+      institution,
       teamFullName,
       teamShortName,
       players: players.map((p, i) => ({
@@ -67,6 +76,7 @@ export default function TeamRegistrationForm() {
         setServerMessage({ type: "success", text: "Team registered successfully!" });
 
         // Reset form
+        setInstitution("");
         setTeamFullName("");
         setTeamShortName("");
         setPlayers(Array(5).fill({ ...initialPlayer }));
@@ -88,14 +98,13 @@ export default function TeamRegistrationForm() {
 
   return (
     <>
-        {/* First Banner Section */}
+      {/* First Banner Section */}
       <motion.section
         variants={fadeIn("up", 0.7)}
         initial="hidden"
         whileInView="show"
         className="relative bg-indigo-700 text-white text-center px-6 py-16 rounded-2xl shadow-md sm:mb-12 md:mb-16 overflow-hidden"
       >
-        {/* Background Gaming Image */}
         <motion.div
           variants={fadeIn("up", 0.71)}
           className="absolute inset-0 opacity-20"
@@ -112,7 +121,6 @@ export default function TeamRegistrationForm() {
           />
         </motion.div>
 
-        {/* Content */}
         <motion.div
           variants={fadeIn("up", 0.72)}
           initial="hidden"
@@ -142,6 +150,7 @@ export default function TeamRegistrationForm() {
           </motion.p>
         </motion.div>
       </motion.section>
+
       <ToastContainer position="top-right" autoClose={4000} />
 
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10">
@@ -151,6 +160,20 @@ export default function TeamRegistrationForm() {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Institution Name */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Institution Name</label>
+            <input
+              value={institution}
+              onChange={(e) => setInstitution(e.target.value)}
+              className={inputClass(errors.institution)}
+              placeholder="Example: Premier University"
+            />
+            {errors.institution && (
+              <p className="text-xs text-red-500">{errors.institution}</p>
+            )}
+          </div>
+
           {/* Team Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -161,7 +184,9 @@ export default function TeamRegistrationForm() {
                 className={inputClass(errors.teamFullName)}
                 placeholder="Example: The Phoenix Squad"
               />
-              {errors.teamFullName && <p className="text-xs text-red-500">{errors.teamFullName}</p>}
+              {errors.teamFullName && (
+                <p className="text-xs text-red-500">{errors.teamFullName}</p>
+              )}
             </div>
 
             <div>
@@ -172,7 +197,9 @@ export default function TeamRegistrationForm() {
                 className={inputClass(errors.teamShortName)}
                 placeholder="Example: PHX"
               />
-              {errors.teamShortName && <p className="text-xs text-red-500">{errors.teamShortName}</p>}
+              {errors.teamShortName && (
+                <p className="text-xs text-red-500">{errors.teamShortName}</p>
+              )}
             </div>
           </div>
 
@@ -185,20 +212,44 @@ export default function TeamRegistrationForm() {
                 <legend className="px-2 text-sm font-semibold">
                   {idx === 0 ? "IGL (Captain) — Player 1" : `Player ${idx + 1}`}
                 </legend>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
-                  {["fullName", "inGameName", "uid"].map((field) => (
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3">
+                  {["fullName", "inGameName", "uid", "roll"].map((field) => (
                     <div key={field}>
-                      <label className="block text-xs font-medium mb-1">{field}</label>
+                      <label className="block text-xs font-medium mb-1 capitalize">
+                        {field === "uid" ? "UID" : field === "inGameName" ? "Game Name" : field}
+                      </label>
                       <input
                         value={player[field]}
                         onChange={(e) => handlePlayerChange(idx, field, e.target.value)}
                         className={inputClass(errors[`player${idx + 1}_${field}`])}
                       />
                       {errors[`player${idx + 1}_${field}`] && (
-                        <p className="text-xs text-red-500">{errors[`player${idx + 1}_${field}`]}</p>
+                        <p className="text-xs text-red-500">
+                          {errors[`player${idx + 1}_${field}`]}
+                        </p>
                       )}
                     </div>
                   ))}
+
+                  {/* WhatsApp for player 1 */}
+                  {idx === 0 && (
+                    <div>
+                      <label className="block text-xs font-medium mb-1">
+                        WhatsApp Number
+                      </label>
+                      <input
+                        value={player.whatsapp || ""}
+                        onChange={(e) => handlePlayerChange(idx, "whatsapp", e.target.value)}
+                        className={inputClass(errors[`player${idx + 1}_whatsapp`])}
+                        placeholder="e.g. 017XXXXXXXX"
+                      />
+                      {errors[`player${idx + 1}_whatsapp`] && (
+                        <p className="text-xs text-red-500">
+                          {errors[`player${idx + 1}_whatsapp`]}
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </fieldset>
             ))}
@@ -219,6 +270,7 @@ export default function TeamRegistrationForm() {
             <button
               type="button"
               onClick={() => {
+                setInstitution("");
                 setTeamFullName("");
                 setTeamShortName("");
                 setPlayers(Array(5).fill({ ...initialPlayer }));
@@ -232,7 +284,11 @@ export default function TeamRegistrationForm() {
           </div>
 
           {serverMessage && (
-            <p className={`mt-4 text-sm ${serverMessage.type === "success" ? "text-green-600" : "text-red-600"}`}>
+            <p
+              className={`mt-4 text-sm ${
+                serverMessage.type === "success" ? "text-green-600" : "text-red-600"
+              }`}
+            >
               {serverMessage.text}
             </p>
           )}

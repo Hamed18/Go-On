@@ -3,11 +3,12 @@ import amazon from '../../src/assets/amazon.png'
 import woocommerce from '../../src/assets/woocommerce.png'
 import meundies from '../../src/assets/meundies.png'
 import sitepoint from '../../src/assets/sitepoint.png'
+import classico from '../../src/assets/Images/classico.jpg'
 import Marquee from 'react-fast-marquee'
 
 
 const Partner = () => {
-  const logos = [slack, amazon, woocommerce, meundies, sitepoint];
+  const logos = [classico];
 
   return (
     <div className="w-full container mx-auto py-12 md:py-16 overflow-hidden flex  flex-col sm:flex-row sm:items-center items-start ">
