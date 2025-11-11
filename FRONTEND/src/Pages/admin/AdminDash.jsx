@@ -70,6 +70,20 @@ const AdminDash = () => {
                     <span className="font-medium">Role:</span>{" "}
                     {user.role || "user"}
                   </p>
+                  <p className="text-sm text-gray-700 mb-1">
+                    <span className="font-medium">Game UID:</span> {user.gameUID}
+                  </p>
+                    <p className="text-sm text-gray-700 mb-1">
+                    <span className="font-medium">WhatsApp Number:</span> {user.whatsapp}
+                  </p>
+                  <p className="text-sm text-gray-700 mb-1">
+                    <span className="font-medium">Address:</span> {user.address}
+                  </p>
+              
+                  <p className="text-sm text-gray-700 mb-1">
+                    <span className="font-medium">Institution:</span> {user.institution}
+                  </p>
+                  
                 </div>
 
                 {/* <div className="mt-4 flex justify-end">

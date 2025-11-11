@@ -47,7 +47,12 @@ const Login = () => {
       dispatch(setUser({ user: res.data, token: res.token }));
       toast.success("Login successful!", { id: toastId });
       form.reset();
-      navigate("/user/dash");
+     // navigate("/user/dash");
+      if (res?.data?.role === "admin") {
+        navigate("/admin/dash");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.error("Login error:", error);
 

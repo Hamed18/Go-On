@@ -16,6 +16,7 @@ import UserDash from "@/Pages/User/UserDash";
 import Login from "@/Pages/Login";
 import App from "@/App";
 import UserProfile from "@/Pages/User/UserProfile";
+import AdminRoute from "@/components/layout/AdminRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -59,7 +60,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardLayout />,
+    element: (
+      <AdminRoute>
+        <DashboardLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         path: "/admin/dash",

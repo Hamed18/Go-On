@@ -55,6 +55,7 @@ const ManageUsers = () => {
                 <div>
                   <h4 className="text-lg font-semibold">{team.teamFullName}</h4>
                   <p className="text-sm text-gray-500">{team.teamShortName}</p>
+                  <h4 className="text-lg font-semibold">Campus: {team.institution}</h4>
                 </div>
               </div>
 
@@ -64,7 +65,7 @@ const ManageUsers = () => {
                   {team.players?.map((player, idx) => (
                     <li key={idx}>
                       <span className="font-semibold">{player.role}:</span> {player.fullName} (
-                      {player.inGameName} | UID: {player.uid})
+                      {player.inGameName} | UID: {player.uid}) 
                     </li>
                   ))}
                 </ul>
