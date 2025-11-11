@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Root from "../Layout/Root";
 import Home from "../Pages/Home/Home";
 import Event from "../Pages/Events/Event";
 import ErrorPage from "./ErrorPage";
@@ -17,45 +16,31 @@ import Login from "@/Pages/Login";
 import App from "@/App";
 import UserProfile from "@/Pages/User/UserProfile";
 import AdminRoute from "@/components/layout/AdminRoute";
+
 const routes = createBrowserRouter([
   {
     path: "/",
-    // element: <Root></Root>,
-    element: <App></App>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <App />,
+    errorElement: <ErrorPage />,
     children: [
-      {
-        path: "/",
-        element: <Home></Home>,
-      },
-      {
-        path: "/events",
-        element: <Event></Event>,
-      },
-      {
-        path: "/blog",
-        element: <Blog></Blog>,
-      },
-      {
-        path: "/contact",
-        element: <About></About>,
-      },
-      {
-        path: "/blog/:id",
-        element: <FeaturedCardDetails></FeaturedCardDetails>,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/events", element: <Event /> },
+      { path: "/blog", element: <Blog /> },
+      { path: "/contact", element: <About /> },
+      { path: "/blog/:id", element: <FeaturedCardDetails /> },
+
+      // ✅ Protected Enroll Route
       {
         path: "/enroll",
-        element: <TeamRegistrationForm></TeamRegistrationForm>,
+        element: (
+          <ProtectedRoute>
+            <TeamRegistrationForm />
+          </ProtectedRoute>
+        ),
       },
-      {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
+
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
   {
@@ -66,14 +51,8 @@ const routes = createBrowserRouter([
       </AdminRoute>
     ),
     children: [
-      {
-        path: "/admin/dash",
-        element: <AdminDash />,
-      },
-      {
-        path: "manage-users",
-        element: <ManageUsers />,
-      },
+      { path: "/admin/dash", element: <AdminDash /> },
+      { path: "manage-users", element: <ManageUsers /> },
     ],
   },
   {
@@ -84,15 +63,10 @@ const routes = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        path: "dash",
-        element: <UserDash />,
-      },
-      {
-        path: "Profile",
-        element: <UserProfile />,
-      },
+      { path: "dash", element: <UserDash /> },
+      { path: "profile", element: <UserProfile /> },
     ],
   },
 ]);
+
 export default routes;
