@@ -65,13 +65,14 @@ const ManageUsers = () => {
                   {team.players?.map((player, idx) => (
                     <li key={idx}>
                       <span className="font-semibold">{player.role}:</span> {player.fullName} (
-                      {player.inGameName} | UID: {player.uid}) | Contact: {player.whatsapp}
+                      {player.inGameName} | UID: {player.uid})
+                       
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-4 text-sm text-gray-400">
+              <div className="mt-4 text-sm text-gray-500">
                 Registered at: {new Date(team.submittedAt).toLocaleString()}
               </div>
             </div>
